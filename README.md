@@ -1,0 +1,2 @@
+# shamebot
+update your teams!
