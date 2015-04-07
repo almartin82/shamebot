@@ -1,0 +1,5 @@
+requests==2.6.0
+yahooscraper==0.3.0
+BeautifulSoup==3.2.1
+pandas===0.14.1-171-g08cf60a
+mandrill==1.0.57
