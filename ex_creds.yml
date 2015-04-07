@@ -1,0 +1,6 @@
+league_url: 'https://baseball.fantasysports.yahoo.com/b1/XXXXX/teams'
+y_user: 'some_user'
+y_pass: 'some_pass'
+mandrill_key: 'some_api_key'
+listhost: 'your-league@googlegroups.com'
+shame_hours: 120
