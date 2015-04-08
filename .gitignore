@@ -58,4 +58,5 @@ target/
 
 #shamebot
 creds.yml
+main_heroku.py
 .idea/

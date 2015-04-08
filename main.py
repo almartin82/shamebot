@@ -1,12 +1,12 @@
 import requests
 import yahooscraper as ys
 import urlparse
-import yaml
 import BeautifulSoup
 import pandas
 from datetime import datetime
+from time import gmtime, strftime
 import mandrill
-
+import os
 
 def bootleg_session(user, password):
     """
@@ -85,18 +85,12 @@ def shamebot(api_key, listhost, offender, num_days):
     )
 
 
-#read in credentials
-with open("creds.yml", 'r') as ymlfile:
-    creds = yaml.load(ymlfile)
-
-#unpack the credentials yaml file
-league_url = creds['league_url']
-y_user = creds['y_user']
-y_pass = creds['y_pass']
-api_key = creds['mandrill_key']
-#listhost = creds['listhost']
-listhost = 'almartin@gmail.com'
-shame_hours = creds['shame_hours']
+league_url = os.environ['league_url']
+y_user = os.environ['y_user']
+y_pass = os.environ['y_pass']
+api_key = os.environ['api_key']
+listhost = os.environ['listhost']
+shame_hours = os.environ['shame_hours']
 
 #make a session
 session = bootleg_session(y_user, y_pass)
@@ -115,3 +109,18 @@ for index, row in data.iterrows():
             offender=row[0] + ' (' + row[1] + ')',
             num_days=round(row[7] / 24, 1)
         )
+
+
+#send receipt email to ALM
+mandrill_client = mandrill.Mandrill(api_key)
+message = {
+    'from_email': 'shamebot@hpkdiaspora.com',
+    'from_name': 'hpk shamebot',
+    'subject': 'shamebot ran successfully',
+    'text': 'heroku process ran at ' + strftime("%Y-%m-%d %H:%M:%S", gmtime()),
+    'to': [
+        {'email': 'almartin@gmail.com',
+         'name': 'Andrew Martin',
+         'type': 'to'}]
+}
+result = mandrill_client.messages.send(message=message)
