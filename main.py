@@ -103,11 +103,11 @@ data = process_managerlist(shame)
 
 #for logs
 print data[7]
-print data[7] > shame_hours
+print data[7] > int(shame_hours)
 
 #send shamebot emails to owners who fit criteria
 for index, row in data.iterrows():
-    if row[7] > shame_hours:
+    if row[7] > int(shame_hours):
         print 'criteria match!'
         print row[1]
         shamebot(
