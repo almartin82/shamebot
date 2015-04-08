@@ -84,7 +84,6 @@ def shamebot(api_key, listhost, offender, num_days):
         }
     )
 
-
 league_url = os.environ['league_url']
 y_user = os.environ['y_user']
 y_pass = os.environ['y_pass']
@@ -92,17 +91,21 @@ api_key = os.environ['api_key']
 listhost = os.environ['listhost']
 shame_hours = os.environ['shame_hours']
 
+print shame_hours
+
 #make a session
 session = bootleg_session(y_user, y_pass)
 
 #fetch and parse the league page
 shame = session.get(league_url, verify=False)
 data = process_managerlist(shame)
-print data
+#print data
 
 #send shamebot emails to owners who fit criteria
 for index, row in data.iterrows():
     if row[7] > shame_hours:
+        print 'criteria match!'
+        print row[1]
         shamebot(
             api_key=api_key,
             listhost=listhost,
