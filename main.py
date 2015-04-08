@@ -101,6 +101,10 @@ shame = session.get(league_url, verify=False)
 data = process_managerlist(shame)
 #print data
 
+#for logs
+print data[7]
+print data[7] > shame_hours
+
 #send shamebot emails to owners who fit criteria
 for index, row in data.iterrows():
     if row[7] > shame_hours:
