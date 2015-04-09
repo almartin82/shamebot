@@ -10,11 +10,14 @@ shamebot uses [@jbrudvik](https://github.com/jbrudvik)'s [yahooscraper](https://
 shamebot is designed to be deployed on heroku, although I suppose if you could just set it as a cron task, if you have access to a server.
 
 **deploying on heroku**
+
 nb - all of the steps below are free.
+
 1. fork this project into a personal repo.  clone it onto your local machine.
 2. get a heroku account.  create a new app.  in git or on the command line, follow the instructions to add a heroku remote.
 3. sign up for mandrill.  get an API key.
 4. create a template in outbound > templates called `shame`.  here's the full text of mine:
+
 ```
 Dear HPK,<br><br>*|ownerName|* has no league activity in the past *|dayValue|* days!<br><br>Always vigilant,<br>-shamebot<br><br><div style="font-size:10px">sent at *|DATE:D, d M Y H:i:s|*</div>
 ```
